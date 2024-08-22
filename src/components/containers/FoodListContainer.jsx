@@ -1,12 +1,19 @@
 import React from "react";
-import useActiveList from "../../hooks/useActiveList";
+import useFetch from "../../hooks/useFetch";
+import Card from "../dynamic/Card";
+import useActionsFavorites from "../../hooks/user-actions/useActionsFavorites";
 
 const FoodListContainer = ({ list, setActive }) => {
+  const { data, loader } = useFetch(
+    `https://themealdb.com/api/json/v1/1/filter.php?c=${list}`
+  );
+  const { handleAddFavorites } = useActionsFavorites();
+
   return (
     <>
       <div className="px-2 flex flex-col gap-y-6">
         <p className="text-xl font-bold">Categories</p>
-        <ul className="categoryScrollbar py-2 flex gap-x-14 overflow-x-scroll text-base">
+        <ul className="categoryScrollbar py-2 flex gap-x-10 overflow-x-scroll text-base">
           <li
             className={`${
               list === "chicken" || list === null
@@ -59,15 +66,34 @@ const FoodListContainer = ({ list, setActive }) => {
           </li>
           <li
             className={`${
-              list === "sweets"
+              list === "dessert"
                 ? "font-bold underline underline-offset-[10px] decoration-2 opacity-1"
                 : "font-light opacity-[0.7]"
             } transition cursor-pointer`}
-            onClick={() => setActive("list", "sweets")}
+            onClick={() => setActive("list", "dessert")}
           >
             Sweets
           </li>
         </ul>
+        <div className="foodListScrollBar min-h-[30rem] px-4 overflow-x-scroll flex gap-x-10">
+          {loader
+            ? data.map(
+                ({
+                  idMeal: mealId,
+                  strMeal: mealName,
+                  strMealThumb: mealImg,
+                }) => (
+                  <Card
+                    key={mealId}
+                    mealId={mealId}
+                    mealName={mealName}
+                    mealImg={mealImg}
+                    handleAddFavorites={handleAddFavorites}
+                  />
+                )
+              )
+            : "Loading"}
+        </div>
       </div>
     </>
   );

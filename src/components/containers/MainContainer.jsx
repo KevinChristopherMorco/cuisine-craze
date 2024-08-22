@@ -2,27 +2,24 @@ import React from "react";
 import Hero from "./sections/Hero";
 import MobileHeader from "../partials/MobileHeader";
 import FoodListContainer from "./FoodListContainer";
-import Card from "../dynamic/Card";
+import Favorites from "../modals/partials/Favorites";
 
 import useActiveList from "../../hooks/useActiveList";
 
 const MainContainer = () => {
   const {
-    active: { list, nav },
+    active: { list, nav, modal },
     setActive,
+    clearActive,
   } = useActiveList();
+
   return (
     <>
       <div className="flex flex-col gap-y-10">
         <Hero />
         <FoodListContainer list={list} setActive={setActive} />
-        <MobileHeader nav={nav} setActive={setActive} />
-        <div className="foodListScrollBar min-h-[30rem] px-4 overflow-x-scroll flex gap-x-10">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div>
+        <MobileHeader nav={nav} modal={modal} setActive={setActive} />
+        <Favorites nav={nav} setActive={setActive} clearActive={clearActive} />
       </div>
     </>
   );

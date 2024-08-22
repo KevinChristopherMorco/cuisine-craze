@@ -14,6 +14,8 @@
     --primary-color: #fff6e9;
     --secondary-color: #fdead0;
     --accent-color: #ff7f3e;
+    --text-color: #000;
+    --shadow-color: #a5a2a2;
     --active-color: #ff7f3e;
     --inactive-color: #646363;
     --text-color: #000;
@@ -27,7 +29,7 @@
   }
 
   #root {
-    @apply min-h-full;
+    @apply min-h-full relative;
   }
 
   @font-face {
