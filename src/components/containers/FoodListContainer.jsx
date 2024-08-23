@@ -1,13 +1,17 @@
 import React from "react";
 import useFetch from "../../hooks/useFetch";
 import Card from "../dynamic/Card";
-import useActionsFavorites from "../../hooks/user-actions/useActionsFavorites";
+import Loader from "../loaders/Loader";
 
-const FoodListContainer = ({ list, setActive }) => {
+const FoodListContainer = ({
+  list,
+  setActive,
+  favorites,
+  handleAddFavorites,
+}) => {
   const { data, loader } = useFetch(
     `https://themealdb.com/api/json/v1/1/filter.php?c=${list}`
   );
-  const { handleAddFavorites } = useActionsFavorites();
 
   return (
     <>
@@ -76,23 +80,32 @@ const FoodListContainer = ({ list, setActive }) => {
           </li>
         </ul>
         <div className="foodListScrollBar min-h-[30rem] px-4 overflow-x-scroll flex gap-x-10">
-          {loader
-            ? data.map(
-                ({
-                  idMeal: mealId,
-                  strMeal: mealName,
-                  strMealThumb: mealImg,
-                }) => (
+          {loader ? (
+            data.map(
+              ({
+                idMeal: mealId,
+                strMeal: mealName,
+                strMealThumb: mealImg,
+              }) => {
+                const isFavorite = favorites.some(
+                  (fav) => fav.mealId === mealId
+                );
+
+                return (
                   <Card
                     key={mealId}
                     mealId={mealId}
                     mealName={mealName}
                     mealImg={mealImg}
+                    isFavorite={isFavorite}
                     handleAddFavorites={handleAddFavorites}
                   />
-                )
-              )
-            : "Loading"}
+                );
+              }
+            )
+          ) : (
+            <Loader />
+          )}
         </div>
       </div>
     </>

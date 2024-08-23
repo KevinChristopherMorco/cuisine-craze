@@ -7,7 +7,7 @@ import {
   IconAdjustmentsHorizontal,
   IconCalendarEvent,
 } from "@tabler/icons-react";
-const MobileHeader = ({ nav, modal, setActive }) => {
+const MobileHeader = ({ nav, setActive }) => {
   return (
     <div className="w-full h-14 left-1/2 -translate-x-1/2 fixed bottom-4 flex items-center bg-[var(--secondary-color)] z-[999] rounded-3xl">
       <ul className="w-full flex items-center justify-around">

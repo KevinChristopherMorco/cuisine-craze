@@ -7,7 +7,6 @@ const useActionsFavorites = () => {
 
   const handleAddFavorites = (mealId, mealName, mealImg) => {
     setFavorites((favorites) => {
-      // [...prev, { mealName: mealName, mealImg: mealImg }]
       const checkIfExist = favorites.some(
         (favorite) => favorite.mealId === mealId
       );
@@ -16,7 +15,7 @@ const useActionsFavorites = () => {
         return [...favorites];
       }
 
-      return [...favorites, { mealId, mealName, mealImg }];
+      return [{ mealId, mealName, mealImg }, ...favorites];
     });
   };
 
@@ -24,10 +23,9 @@ const useActionsFavorites = () => {
     setFavorites(favorites.filter((x) => x.mealId !== mealId));
   };
 
-  useEffect(
-    () => localStorage.setItem("favorites", JSON.stringify(favorites)),
-    [favorites]
-  );
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   return { favorites, handleAddFavorites, handleDeleteFavorites };
 };

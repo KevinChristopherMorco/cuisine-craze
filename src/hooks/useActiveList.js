@@ -5,6 +5,7 @@ const useActiveList = () => {
     JSON.parse(localStorage.getItem("active")) || {
       list: "chicken",
       nav: null,
+      tab: "ingredients",
     }
   );
   const { list, nav } = active;
@@ -21,11 +22,11 @@ const useActiveList = () => {
   );
 
   useEffect(() => {
-    // if (!nav) {
-    //   document.body.classList.remove("overflow-hidden");
-    //   return;
-    // }
-    // document.body.classList.add("overflow-hidden");
+    if (!nav) {
+      document.body.classList.remove("overflow-hidden");
+      return;
+    }
+    document.body.classList.add("overflow-hidden");
   }, [nav]);
 
   return { active, setActive, clearActive };

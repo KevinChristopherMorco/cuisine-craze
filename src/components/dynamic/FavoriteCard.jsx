@@ -8,7 +8,7 @@ const FavoriteCard = ({ mealId, mealName, mealImg, handleDeleteFavorites }) => {
         <img src={mealImg} alt={mealName} className="rounded-xl" />
       </div>
       <div className="py-1 flex flex-col justify-around basis-[60%] text-lg font-bold">
-        <p>{mealName}</p>
+        <p className="line-clamp-2">{mealName}</p>
         <div
           className="flex items-center gap-x-1 text-[var(--accent-color)] font-bold cursor-pointer"
           onClick={() => handleDeleteFavorites(mealId)}
