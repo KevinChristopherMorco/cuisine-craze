@@ -3,7 +3,7 @@ import food from "../../../images/foods/food.jpeg";
 
 const Hero = () => {
   return (
-    <div className="h-fit p-2 bg-waves bg-no-repeat bg-cover">
+    <div className="h-[20rem] p-2 bg-waves bg-no-repeat bg-cover">
       <h1 className="text-2xl text-[#fff] font-medium">Hi there, stranger!</h1>
       <div className="py-10 flex gap-x-4">
         <div className="basis-[70%]">

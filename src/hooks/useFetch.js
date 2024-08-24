@@ -11,7 +11,7 @@ const useFetch = (url) => {
           throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
-        setData(json.meals);
+        setData(json.meals || []);
         setLoader(true);
       } catch (error) {
         console.error(error.message);

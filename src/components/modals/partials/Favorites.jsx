@@ -3,9 +3,9 @@ import FavoriteCard from "../../dynamic/FavoriteCard";
 import EmptyData from "../../empty/EmptyData";
 import { IconSquareRoundedX } from "@tabler/icons-react";
 
-const Favorites = ({ nav, clearActive, favorites, handleDeleteFavorites }) => {
+const Favorites = ({ clearActive, favorites, handleDeleteFavorites }) => {
   return (
-    <div className="w-full h-[100vh] fixed flex justify-center bg-[#000] bg-opacity-50 opacity-1 z-[9999] animate-fadeIn">
+    <div className="w-full h-[100vh] fixed flex justify-center bg-[#000] bg-opacity-50 opacity-1 z-[999] animate-fadeIn">
       <div
         className={`h-[80%] w-[90%] fixed p-4 my-10  flex flex-col gap-y-2 bg-[var(--primary-color)] rounded-xl`}
       >
@@ -31,6 +31,7 @@ const Favorites = ({ nav, clearActive, favorites, handleDeleteFavorites }) => {
                   mealId={mealId}
                   mealName={mealName}
                   mealImg={mealImg}
+                  clearActive={clearActive}
                   handleDeleteFavorites={handleDeleteFavorites}
                 />
               );

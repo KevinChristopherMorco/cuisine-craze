@@ -4,6 +4,7 @@ import MobileHeader from "../partials/MobileHeader";
 import FoodListContainer from "./FoodListContainer";
 import Home from "./routes/Home";
 import Favorites from "../modals/partials/Favorites";
+import Search from "../modals/partials/Search";
 import RecipeInformation from "./routes/RecipeInformation";
 
 import useActiveList from "../../hooks/useActiveList";
@@ -26,7 +27,6 @@ const MainContainer = () => {
       <div className="flex flex-col gap-y-10">
         <BrowserRouter>
           <Routes>
-            {" "}
             <Route
               path="/"
               element={
@@ -35,34 +35,37 @@ const MainContainer = () => {
                   setActive={setActive}
                   favorites={favorites}
                   handleAddFavorites={handleAddFavorites}
+                  handleDeleteFavorites={handleDeleteFavorites}
                 />
               }
             />
             <Route
               path="/:recipe"
-              element={<RecipeInformation tab={tab} setActive={setActive} />}
+              element={
+                <RecipeInformation
+                  tab={tab}
+                  favorites={favorites}
+                  setActive={setActive}
+                  handleAddFavorites={handleAddFavorites}
+                  handleDeleteFavorites={handleDeleteFavorites}
+                />
+              }
             />
           </Routes>
+
+          <MobileHeader nav={nav} setActive={setActive} />
+          {nav === "favorites" && (
+            <Favorites
+              nav={nav}
+              setActive={setActive}
+              clearActive={clearActive}
+              favorites={favorites}
+              handleDeleteFavorites={handleDeleteFavorites}
+            />
+          )}
+
+          {nav === "search" && <Search clearActive={clearActive} />}
         </BrowserRouter>
-
-        {/* <Hero />
-        <FoodListContainer
-          list={list}
-          setActive={setActive}
-          favorites={favorites}
-          handleAddFavorites={handleAddFavorites}
-        /> */}
-
-        <MobileHeader nav={nav} setActive={setActive} />
-        {nav === "favorites" && (
-          <Favorites
-            nav={nav}
-            setActive={setActive}
-            clearActive={clearActive}
-            favorites={favorites}
-            handleDeleteFavorites={handleDeleteFavorites}
-          />
-        )}
       </div>
     </>
   );

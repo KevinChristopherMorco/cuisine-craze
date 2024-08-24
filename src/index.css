@@ -12,8 +12,10 @@
 
   :root {
     /* #fff6e9 */
+    /* #fdead0 */
+
     --primary-color: #faf9fc;
-    --secondary-color: #fdead0;
+    --secondary-color: #f8eee1;
     --accent-color: #ff7f3e;
     --text-color: #000;
     --shadow-color: #a5a2a2;

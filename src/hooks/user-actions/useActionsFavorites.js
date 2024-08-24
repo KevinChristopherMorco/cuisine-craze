@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { successfulAlert, infoAlert } from "../../components/alerts/Alerts";
 
 const useActionsFavorites = () => {
   const [favorites, setFavorites] = useState(
@@ -14,13 +15,14 @@ const useActionsFavorites = () => {
       if (checkIfExist) {
         return [...favorites];
       }
-
+      successfulAlert(`${mealName} listed as a favorite!`);
       return [{ mealId, mealName, mealImg }, ...favorites];
     });
   };
 
-  const handleDeleteFavorites = (mealId) => {
+  const handleDeleteFavorites = (mealId, mealName) => {
     setFavorites(favorites.filter((x) => x.mealId !== mealId));
+    infoAlert(`${mealName} removed as a favorite!`);
   };
 
   useEffect(() => {

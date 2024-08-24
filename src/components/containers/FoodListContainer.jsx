@@ -8,6 +8,7 @@ const FoodListContainer = ({
   setActive,
   favorites,
   handleAddFavorites,
+  handleDeleteFavorites,
 }) => {
   const { data, loader } = useFetch(
     `https://themealdb.com/api/json/v1/1/filter.php?c=${list}`
@@ -99,6 +100,7 @@ const FoodListContainer = ({
                     mealImg={mealImg}
                     isFavorite={isFavorite}
                     handleAddFavorites={handleAddFavorites}
+                    handleDeleteFavorites={handleDeleteFavorites}
                   />
                 );
               }

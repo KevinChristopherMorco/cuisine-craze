@@ -5,7 +5,7 @@ import {
   IconHeartFilled,
   IconSearch,
   IconAdjustmentsHorizontal,
-  IconCalendarEvent,
+  IconShoppingCart,
 } from "@tabler/icons-react";
 const MobileHeader = ({ nav, setActive }) => {
   return (
@@ -38,6 +38,7 @@ const MobileHeader = ({ nav, setActive }) => {
         <li className="p-4 bg-[var(--accent-color)] rounded-full">
           <button
             className={`flex text-4xl text-[#fff] items-center cursor-pointer`}
+            onClick={() => setActive("nav", "search")}
           >
             <IconSearch size={30} />
           </button>
@@ -63,7 +64,7 @@ const MobileHeader = ({ nav, setActive }) => {
             } flex items-center transition-colors cursor-pointer`}
             onClick={() => setActive("nav", "schedule")}
           >
-            <IconCalendarEvent />
+            <IconShoppingCart />
           </button>
         </li>
       </ul>
