@@ -6,7 +6,7 @@ import {
   IconSearch,
   IconMoonStars,
   IconBrightness2,
-  IconShoppingCart,
+  IconFileCheck,
 } from "@tabler/icons-react";
 const MobileHeader = ({ nav, setActive }) => {
   const { currentTheme, setTheme } = useThemeChange();
@@ -49,13 +49,13 @@ const MobileHeader = ({ nav, setActive }) => {
         <li>
           <button
             className={`${
-              nav === "schedule"
+              nav === "list"
                 ? "text-[var(--active-color)]"
                 : "text-[var(--inactive-color)]"
             } flex items-center transition-colors cursor-pointer`}
-            onClick={() => setActive("nav", "schedule")}
+            onClick={() => setActive("nav", "list")}
           >
-            <IconShoppingCart className="md:w-8 md:h-8 lg:w-9 lg:h-9" />
+            <IconFileCheck className="md:w-8 md:h-8 lg:w-9 lg:h-9" />
           </button>
         </li>
 

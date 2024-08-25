@@ -5,6 +5,7 @@ import FoodListContainer from "./FoodListContainer";
 import Home from "./routes/Home";
 import Favorites from "../modals/partials/Favorites";
 import Search from "../modals/partials/Search";
+import List from "../modals/partials/List";
 import RecipeInformation from "./routes/RecipeInformation";
 
 import useActiveList from "../../hooks/useActiveList";
@@ -65,6 +66,7 @@ const MainContainer = () => {
           )}
 
           {nav === "search" && <Search clearActive={clearActive} />}
+          {nav === "list" && <List clearActive={clearActive} />}
         </BrowserRouter>
       </div>
     </>
