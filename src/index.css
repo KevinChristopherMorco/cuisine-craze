@@ -22,13 +22,31 @@
     --active-color: #ff7f3e;
     --inactive-color: #646363;
     --text-color: #000;
+
+    --primary-dark-color: #0d0d0d; /* Deep black for the primary background */
+    --secondary-dark-color: #1a1a1a; /* Slightly lighter black/gray for secondary background */
+    --accent-dark-color: #e63946; /* Bright pink for accents and highlights */
+    --text-dark-color: #faf9fc; /* Light pinkish-white for text */
+    --shadow-dark-color: #4d4d4d; /* Soft shadow effect in gray */
+    --active-dark-color: #e63946; /* Bright pink for active elements */
+    --inactive-dark-color: #8c8c8c; /* Neutral gray for inactive elements */
+  }
+
+  .dark {
+    --primary-color: var(--primary-dark-color);
+    --secondary-color: var(--secondary-dark-color);
+    --accent-color: var(--accent-dark-color);
+    --text-color: var(--text-dark-color);
+    --shadow-color: var(--shadow-dark-color);
+    --active-color: var(--active-dark-color);
+    --inactive-color: var(--inactive-dark-color);
   }
 
   html {
     @apply h-full;
   }
   body {
-    @apply bg-[var(--primary-color)] h-full;
+    @apply bg-[var(--primary-color)] h-full text-[var(--text-color)];
   }
 
   #root {

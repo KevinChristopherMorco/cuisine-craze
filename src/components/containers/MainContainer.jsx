@@ -24,7 +24,7 @@ const MainContainer = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-y-10">
+      <div className="flex flex-col gap-y-10 lg:gap-y-32">
         <BrowserRouter>
           <Routes>
             <Route

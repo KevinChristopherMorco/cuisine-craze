@@ -17,8 +17,8 @@ const FoodListContainer = ({
   return (
     <>
       <div className="px-2 flex flex-col gap-y-6">
-        <p className="text-xl font-bold">Categories</p>
-        <ul className="categoryScrollbar py-2 flex gap-x-10 overflow-x-scroll text-base">
+        <p className="text-xl font-bold md:text-2xl lg:text-3xl">Categories</p>
+        <ul className="categoryScrollbar py-2 flex gap-x-10 overflow-x-scroll text-base md:text-lg lg:text-xl">
           <li
             className={`${
               list === "chicken" || list === null

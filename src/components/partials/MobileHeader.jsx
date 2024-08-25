@@ -1,15 +1,17 @@
 import React from "react";
-import useActiveList from "../../hooks/useActiveList";
+import useThemeChange from "../../hooks/useThemeChange";
 import {
   IconHomeFilled,
   IconHeartFilled,
   IconSearch,
-  IconAdjustmentsHorizontal,
+  IconMoonStars,
+  IconBrightness2,
   IconShoppingCart,
 } from "@tabler/icons-react";
 const MobileHeader = ({ nav, setActive }) => {
+  const { currentTheme, setTheme } = useThemeChange();
   return (
-    <div className="w-full h-14 left-1/2 -translate-x-1/2 fixed bottom-4 flex items-center bg-[var(--secondary-color)] z-[999] rounded-3xl">
+    <div className="w-full h-14 left-1/2 -translate-x-1/2 fixed bottom-4 flex items-center bg-[var(--secondary-color)] z-[999] rounded-3xl md:w-[80%] lg:w-[60%]">
       <ul className="w-full flex items-center justify-around">
         <li>
           <button
@@ -20,7 +22,7 @@ const MobileHeader = ({ nav, setActive }) => {
             } flex items-center transition-colors cursor-pointer`}
             onClick={() => setActive("nav", "home")}
           >
-            <IconHomeFilled />
+            <IconHomeFilled className="md:w-8 md:h-8 lg:w-9 lg:h-9" />
           </button>
         </li>
         <li className="">
@@ -32,7 +34,7 @@ const MobileHeader = ({ nav, setActive }) => {
             } flex items-center transition-colors cursor-pointer`}
             onClick={() => setActive("nav", "favorites")}
           >
-            <IconHeartFilled />
+            <IconHeartFilled className="md:w-8 md:h-8 lg:w-9 lg:h-9" />
           </button>
         </li>
         <li className="p-4 bg-[var(--accent-color)] rounded-full">
@@ -40,21 +42,10 @@ const MobileHeader = ({ nav, setActive }) => {
             className={`flex text-4xl text-[#fff] items-center cursor-pointer`}
             onClick={() => setActive("nav", "search")}
           >
-            <IconSearch size={30} />
+            <IconSearch className="w-8 h-8 md:w-10 md:h-10 lg:w-11 lg:h-11" />
           </button>
         </li>
-        <li>
-          <button
-            className={`${
-              nav === "settings"
-                ? "text-[var(--active-color)]"
-                : "text-[var(--inactive-color)]"
-            } flex items-center transition-colors cursor-pointer`}
-            onClick={() => setActive("nav", "settings")}
-          >
-            <IconAdjustmentsHorizontal />
-          </button>
-        </li>
+
         <li>
           <button
             className={`${
@@ -64,8 +55,34 @@ const MobileHeader = ({ nav, setActive }) => {
             } flex items-center transition-colors cursor-pointer`}
             onClick={() => setActive("nav", "schedule")}
           >
-            <IconShoppingCart />
+            <IconShoppingCart className="md:w-8 md:h-8 lg:w-9 lg:h-9" />
           </button>
+        </li>
+
+        <li>
+          {currentTheme === "dark" ? (
+            <button
+              className={`${
+                nav === "settings"
+                  ? "text-[var(--active-color)]"
+                  : "text-[var(--inactive-color)]"
+              } flex items-center transition-colors cursor-pointer`}
+              onClick={() => setTheme({ currentTheme: "light" })}
+            >
+              <IconBrightness2 className="md:w-8 md:h-8 lg:w-9 lg:h-9" />
+            </button>
+          ) : (
+            <button
+              className={`${
+                nav === "settings"
+                  ? "text-[var(--active-color)]"
+                  : "text-[var(--inactive-color)]"
+              } flex items-center transition-colors cursor-pointer`}
+              onClick={() => setTheme({ currentTheme: "dark" })}
+            >
+              <IconMoonStars />
+            </button>
+          )}
         </li>
       </ul>
     </div>

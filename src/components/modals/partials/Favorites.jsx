@@ -1,6 +1,7 @@
 import React from "react";
 import FavoriteCard from "../../dynamic/FavoriteCard";
 import EmptyData from "../../empty/EmptyData";
+import eatingPenguin from "../../../images/gif/eating-penguin.gif";
 import { IconSquareRoundedX } from "@tabler/icons-react";
 
 const Favorites = ({ clearActive, favorites, handleDeleteFavorites }) => {
@@ -17,12 +18,12 @@ const Favorites = ({ clearActive, favorites, handleDeleteFavorites }) => {
         </div>
         <div className="h-full overflow-y-scroll flex flex-col gap-y-10">
           {favorites.length === 0 ? (
-            <EmptyData
-              title={"No favorites yet"}
-              subtext={
-                "You can add a favorite by just pressing the heart icon in the list."
-              }
-            />
+            <div className="h-[10rem] flex flex-col justify-evenly items-center">
+              <img src={eatingPenguin} alt="" className="w-[5rem] h-[5rem]" />
+              <p className="text-xl text-center font-bold">
+                Tap a heart to pick a favorite!
+              </p>
+            </div>
           ) : (
             favorites.map(({ mealId, mealName, mealImg }) => {
               return (

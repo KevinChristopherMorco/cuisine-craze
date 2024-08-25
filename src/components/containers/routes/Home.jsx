@@ -10,7 +10,7 @@ const Home = ({
   handleDeleteFavorites,
 }) => {
   return (
-    <div className="flex flex-col gap-y-10">
+    <>
       <Hero />
       <FoodListContainer
         list={list}
@@ -19,7 +19,7 @@ const Home = ({
         handleAddFavorites={handleAddFavorites}
         handleDeleteFavorites={handleDeleteFavorites}
       />
-    </div>
+    </>
   );
 };
 
