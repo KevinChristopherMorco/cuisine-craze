@@ -17,13 +17,13 @@ const Search = ({ clearActive }) => {
           <input
             type="search"
             name="search"
-            className="w-[90%] p-2 text-base bg-[var(--primary-color)] border border-[var(--accent-color)] rounded-lg outline-none focus:border-2"
+            className="w-[90%] p-2 text-base bg-[var(--primary-color)] border border-[var(--accent-color)] rounded-lg outline-none focus:border-2 md:w-[50%] lg:w-[60%]"
             placeholder="Search for a recipe..."
             autoComplete="off"
             onChange={handleInput}
           />
           <div className="cursor-pointer" onClick={() => clearActive("nav")}>
-            <IconSquareRoundedX />
+            <IconSquareRoundedX className="md:w-8 md:h-8" />
           </div>
         </div>
         {empty ? (

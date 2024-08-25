@@ -10,11 +10,11 @@ const FavoriteCard = ({
   handleDeleteFavorites,
 }) => {
   return (
-    <div className="flex justify-between shadow-md shadow-[var(--shadow-color)] rounded-xl dark:border dark:border-[var(--secondary-color)] dark:bg-[var(--primary-color)] dark:shadow dark:shadow-[var(--shadow-color)] hover:scale-110 transition">
-      <div className="basis-[35%]">
+    <div className="flex justify-between shadow-md shadow-[var(--shadow-color)] rounded-xl dark:border dark:border-[var(--secondary-color)] dark:bg-[var(--primary-color)] dark:shadow dark:shadow-[var(--accent-color)] hover:scale-110 transition">
+      <div className="basis-[35%] md:basis-[30%]">
         <img src={mealImg} alt={mealName} className="rounded-xl" />
       </div>
-      <div className="py-1 flex flex-col justify-around basis-[60%] text-lg font-bold">
+      <div className="py-1 flex flex-col justify-around basis-[60%] text-lg font-bold md:basis-[65%] md:text-xl">
         <p className="line-clamp-2">{mealName}</p>
         <div className="py-2 flex items-center gap-x-6 ">
           <div
@@ -24,7 +24,7 @@ const FavoriteCard = ({
             <div className="p-1 flex items-center border border-[var(--accent-color)] bg-[var(--secondary-color)] text-[--accent-color] rounded-full">
               <IconHeartBroken className="h-4 w-4" />
             </div>
-            <p className="text-[0.80rem] text-[var(--active-color)] font-bold">
+            <p className="text-[0.80rem] text-[var(--active-color)] font-bold md:text-base lg:text-lg">
               Dislike
             </p>
           </div>
@@ -36,7 +36,9 @@ const FavoriteCard = ({
             <div className="p-1 flex items-center text-[var(--inactive-color)] font-medium">
               <IconEggs className="h-5 w-5" />
             </div>
-            <p className="h-fit text-[0.80rem]">Recipe</p>
+            <p className="h-fit text-[0.80rem] md:text-base lg:text-lg">
+              Recipe
+            </p>
           </Link>
         </div>
       </div>

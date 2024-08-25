@@ -83,24 +83,24 @@ const RecipeInformation = ({
   const isFavorite = favorites.some((fav) => fav.mealId === mealId);
 
   return (
-    <div className="px-6 py-10 overflow-y-scroll flex flex-col gap-y-8">
+    <div className="px-6 py-10 overflow-y-scroll flex flex-col gap-y-8 md:gap-y-12">
       <div className="flex justify-between items-center cursor-pointer">
         <Link to="/">
-          <IconChevronLeft className="text-xl" />
+          <IconChevronLeft className="md:w-8 md:h-8 lg:w-10 lg:h-10" />
         </Link>
         {isFavorite ? (
           <div
-            className="p-2 flex items-center border-2 border-[var(--accent-color)] bg-[var(--secondary-color)] text-[--accent-color] rounded-xl"
+            className="p-2 flex items-center border-2 border-[var(--accent-color)] bg-[var(--secondary-color)] text-[--accent-color] rounded-xl md:p-3"
             onClick={() => handleDeleteFavorites(mealId, mealName)}
           >
-            <IconHeartBroken />
+            <IconHeartBroken className="md:w-8 md:h-8" />
           </div>
         ) : (
           <div
-            className="p-2 flex items-center bg-[var(--accent-color)] text-[#fff] rounded-xl"
+            className="p-2 flex items-center bg-[var(--accent-color)] text-[#fff] rounded-xl md:p-3"
             onClick={() => handleAddFavorites(mealId, mealName, mealImg)}
           >
-            <IconHeartFilled />
+            <IconHeartFilled className="md:w-8 md:h-8" />
           </div>
         )}
       </div>
@@ -108,23 +108,21 @@ const RecipeInformation = ({
         <img
           src={mealImg}
           alt=""
-          className="w-[90%] h-[90%] mx-auto rounded-xl"
+          className="w-[90%] h-[90%] mx-auto rounded-xl md:w-[50%] md:h-[50%]"
         />
       </div>
       <div className="flex flex-wrap items-center">
-        <div className="basis-[40%]">
-          <p className="text-xl font-bold">{mealName}</p>
+        <div className="basis-[40%] text-xl font-bold md:text-2xl lg:text-3xl">
+          <p>{mealName}</p>
         </div>
-        <div className="w-full basis-[60%] flex justify-evenly items-center">
+        <div className="w-full basis-[60%] flex justify-evenly items-center text-sm text-[var(--inactive-color)] font-bold md:text-xl lg:text-2xl">
           <div className="flex items-center gap-x-1">
-            <IconFlag3 size={18} />
-            <p className="text-sm text-[var(--inactive-color)] font-bold">
-              {mealArea}
-            </p>
+            <IconFlag3 className="md:w-8 md:h-8 lg:w-10 lg:h-10" />
+            <p>{mealArea}</p>
           </div>
           <div className="flex items-center gap-x-1">
-            <IconChefHat size={18} />
-            <p className="text-sm text-[var(--inactive-color)] font-bold">
+            <IconChefHat className="md:w-8 md:h-8 lg:w-10 lg:h-10" />
+            <p>
               {mealCategory === "Vegetarian"
                 ? "Vegan"
                 : mealCategory === "Miscellaneous"
@@ -134,8 +132,8 @@ const RecipeInformation = ({
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-y-8">
-        <div className="flex justify-start items-start gap-x-4 text font-medium ">
+      <div className="flex flex-col gap-y-8 md:gap-y-12">
+        <div className="flex justify-start items-start gap-x-4 text-base font-medium md:text-lg lg:text-xl">
           <div
             className={
               tab === "ingredients"
@@ -160,8 +158,8 @@ const RecipeInformation = ({
         <div className="pb-10">
           {tab === "ingredients" && (
             <div className="flex flex-col gap-y-4 animate-fadeIn">
-              <p className="font-medium">Ingredients:</p>
-              <ol className="flex flex-wrap gap-x-2 text-sm font-medium list-decimal list-inside">
+              <p className="font-medium md:text-xl lg:text-2xl">Ingredients:</p>
+              <ol className="flex flex-wrap gap-x-2 text-sm font-medium list-decimal list-inside md:gap-x-4 md:text-lg lg:gap-x-6 lg:text-xl">
                 {ingredientsList
                   .filter((ingredient) => Boolean(ingredient))
                   .map((ingredients, index) => (
@@ -173,7 +171,7 @@ const RecipeInformation = ({
 
           {tab === "instructions" && (
             <>
-              <div className="h-[20rem] overflow-y-scroll flex flex-col gap-y-2 text-sm animate-fadeIn">
+              <div className="h-[20rem] overflow-y-scroll flex flex-col gap-y-2 text-sm animate-fadeIn md:text-lg lg:text-xl">
                 <ol className="flex flex-col gap-y-2 list-decimal list-inside">
                   {mealInstructions.split("\r\n").map((instruction, index) => (
                     <li key={index}>{instruction}</li>
