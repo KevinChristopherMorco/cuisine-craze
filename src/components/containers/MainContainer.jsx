@@ -1,7 +1,5 @@
 import React from "react";
-import Hero from "./sections/Hero";
 import MobileHeader from "../partials/MobileHeader";
-import FoodListContainer from "./FoodListContainer";
 import Home from "./routes/Home";
 import Favorites from "../modals/partials/Favorites";
 import Search from "../modals/partials/Search";
@@ -12,6 +10,7 @@ import useActiveList from "../../hooks/useActiveList";
 import useActionsFavorites from "../../hooks/user-actions/useActionsFavorites";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MonitorHeader from "../partials/MonitorHeader";
 
 const MainContainer = () => {
   const {
@@ -55,6 +54,7 @@ const MainContainer = () => {
           </Routes>
 
           <MobileHeader nav={nav} setActive={setActive} />
+          <MonitorHeader nav={nav} setActive={setActive} />
           {nav === "favorites" && (
             <Favorites
               nav={nav}

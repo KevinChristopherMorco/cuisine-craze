@@ -11,7 +11,7 @@ const Search = ({ clearActive }) => {
   return (
     <div className="w-full h-[100vh] fixed flex justify-center bg-[#000] bg-opacity-50 opacity-1 z-[999] animate-fadeIn">
       <div
-        className={`h-[100%] w-[100%] fixed p-4  flex flex-col gap-y-2 bg-[var(--primary-color)]`}
+        className={`h-[100%] w-[100%] fixed p-4  flex flex-col gap-y-2 bg-[var(--primary-color)] xl:p-8`}
       >
         <div className="pb-3 flex justify-between items-center text-xl font-bold border-b-2 border-[var(--accent-color)]">
           <input

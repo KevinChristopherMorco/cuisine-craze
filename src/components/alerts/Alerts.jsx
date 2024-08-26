@@ -4,7 +4,7 @@ const Toast = Swal.mixin({
   toast: true,
   position: "top-end",
   customClass: {
-    popup: "!bg-[var(--secondary-color)] !z-[9999]",
+    popup: "!bg-[var(--secondary-color)] !z-[9999] dark:text-[#fff]",
   },
   showConfirmButton: false,
   timerProgressBar: true,

@@ -10,6 +10,7 @@ import {
   IconFlag3,
   IconChefHat,
   IconSoup,
+  IconChecklist,
 } from "@tabler/icons-react";
 
 const RecipeInformation = ({
@@ -24,7 +25,8 @@ const RecipeInformation = ({
     `https://themealdb.com/api/json/v1/1/search.php?s=${recipe}`
   );
 
-  const { addChecklist } = useChecklist();
+  const { checklist, addChecklist } = useChecklist();
+  const { mealName: checkMealName } = checklist;
 
   if (!loader) {
     return <Loader />;
@@ -93,33 +95,33 @@ const RecipeInformation = ({
           <IconChevronLeft className="md:w-8 md:h-8 lg:w-10 lg:h-10" />
         </Link>
         {isFavorite ? (
-          <div
+          <button
             className="p-2 flex items-center border-2 border-[var(--accent-color)] bg-[var(--secondary-color)] text-[--accent-color] rounded-xl md:p-3"
             onClick={() => handleDeleteFavorites(mealId, mealName)}
           >
             <IconHeartBroken className="md:w-8 md:h-8" />
-          </div>
+          </button>
         ) : (
-          <div
+          <button
             className="p-2 flex items-center bg-[var(--accent-color)] text-[#fff] rounded-xl md:p-3"
             onClick={() => handleAddFavorites(mealId, mealName, mealImg)}
           >
             <IconHeartFilled className="md:w-8 md:h-8" />
-          </div>
+          </button>
         )}
       </div>
       <div>
         <img
           src={mealImg}
           alt=""
-          className="w-[90%] h-[90%] mx-auto rounded-xl md:w-[50%] md:h-[50%]"
+          className="w-[90%] h-[90%] mx-auto rounded-xl md:w-[50%] md:h-[50%] xl:w-[40%] xl:h-[40%]"
         />
       </div>
-      <div className="flex flex-wrap items-center">
-        <div className="basis-[40%] text-xl font-bold md:text-2xl lg:text-3xl">
+      <div className="flex flex-wrap items-center xl:justify-between">
+        <div className="basis-[40%] text-xl font-bold md:text-2xl lg:text-3xl xl:text-4xl">
           <p>{mealName}</p>
         </div>
-        <div className="w-full basis-[60%] flex justify-evenly items-center text-[0.8rem] text-[var(--inactive-color)] font-bold md:text-xl lg:text-2xl">
+        <div className="w-full basis-[60%] flex justify-evenly items-center text-[0.8rem] text-[var(--inactive-color)] font-bold md:text-xl lg:text-2xl xl:basis-[20%] xl:justify-start xl:gap-x-8">
           <div className="flex items-center gap-x-1">
             <IconFlag3 className="w-5 h-5 md:w-8 md:h-8 lg:w-10 lg:h-10" />
             <p>{mealArea}</p>
@@ -137,7 +139,7 @@ const RecipeInformation = ({
         </div>
       </div>
       <div className="flex flex-col gap-y-8 md:gap-y-12">
-        <div className="flex justify-start items-start gap-x-4 text-base font-medium md:text-lg lg:text-xl">
+        <div className="flex justify-start items-start gap-x-4 text-base font-medium cursor-pointer md:text-lg lg:text-xl">
           <div
             className={
               tab === "ingredients"
@@ -172,8 +174,19 @@ const RecipeInformation = ({
                     addChecklist(mealId, mealName, ingredientsList)
                   }
                 >
-                  <IconSoup className="w-5 h-5 md:w-8 md:h-8 lg:w-10 lg:h-10" />
-                  <p>Cook this now!</p>
+                  {checkMealName === mealName ? (
+                    <>
+                      <IconChecklist className="w-5 h-5 md:w-8 md:h-8 lg:w-10 lg:h-10" />
+                      <p>Added in your checklist</p>
+                    </>
+                  ) : (
+                    !Boolean(checkMealName) && (
+                      <>
+                        <IconSoup className="w-5 h-5 md:w-8 md:h-8 lg:w-10 lg:h-10" />
+                        <p>Cook this now!</p>
+                      </>
+                    )
+                  )}
                 </div>
               </div>
               <ol className="flex flex-wrap gap-x-2 text-sm font-medium list-decimal list-inside md:gap-x-4 md:text-lg lg:gap-x-6 lg:text-xl">

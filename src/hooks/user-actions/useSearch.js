@@ -13,7 +13,9 @@ const useSearch = () => {
   const handleInput = (event) => {
     const { name, value } = event.target;
 
-    value.length > 0 ? checkEmpty(true) : checkEmpty(false);
+    if (data) {
+      value.length > 0 ? checkEmpty(true) : checkEmpty(false);
+    }
 
     setInput((prev) => ({ ...prev, [name]: value }));
   };

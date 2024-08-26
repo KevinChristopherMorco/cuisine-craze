@@ -27,7 +27,7 @@ const Card = ({
   return (
     <>
       <div
-        className={`h-[20rem] shrink-0 basis-[60%] h-fit flex flex-col justify-around gap-y-10 bg-[#CEEDFF] shadow-md shadow-[var(--shadow-color)] rounded-xl dark:border dark:border-[var(--secondary-color)] dark:bg-[var(--primary-color)] dark:shadow dark:shadow-[var(--accent-color)] hover:scale-110 transition md:basis-[35%] lg:basis-[28%]`}
+        className={`h-[20rem] shrink-0 basis-[60%] h-fit flex flex-col justify-around gap-y-10 bg-[#CEEDFF] shadow-md shadow-[var(--shadow-color)] rounded-xl dark:border dark:border-[var(--secondary-color)] dark:bg-[var(--primary-color)] dark:shadow dark:shadow-[var(--accent-color)] hover:scale-110 transition md:basis-[35%] lg:basis-[28%] 2xl:basis-[20%]`}
       >
         <div
           className="w-[10rem] h-[10rem] m-3 flex justify-end shadow shadow-[var(--accent-color)] rounded-full self-end lg:w-[12rem] lg:h-[12rem]"

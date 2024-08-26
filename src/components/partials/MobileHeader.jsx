@@ -11,7 +11,7 @@ import {
 const MobileHeader = ({ nav, setActive }) => {
   const { currentTheme, setTheme } = useThemeChange();
   return (
-    <div className="w-full h-14 left-1/2 -translate-x-1/2 fixed bottom-4 flex items-center bg-[var(--secondary-color)] z-[999] rounded-3xl md:w-[80%] lg:w-[60%]">
+    <div className="w-full h-14 left-1/2 -translate-x-1/2 fixed bottom-4 flex items-center bg-[var(--secondary-color)] z-[999] rounded-3xl md:w-[80%] lg:w-[60%] xl:hidden">
       <ul className="w-full flex items-center justify-around">
         <li>
           <button
@@ -25,7 +25,7 @@ const MobileHeader = ({ nav, setActive }) => {
             <IconHomeFilled className="md:w-8 md:h-8 lg:w-9 lg:h-9" />
           </button>
         </li>
-        <li className="">
+        <li>
           <button
             className={`${
               nav === "favorites"

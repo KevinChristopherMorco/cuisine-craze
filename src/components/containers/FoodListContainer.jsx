@@ -2,6 +2,7 @@ import React from "react";
 import useFetch from "../../hooks/useFetch";
 import Card from "../dynamic/Card";
 import Loader from "../loaders/Loader";
+import EmptyData from "../empty/EmptyData";
 
 const FoodListContainer = ({
   list,
@@ -10,7 +11,7 @@ const FoodListContainer = ({
   handleAddFavorites,
   handleDeleteFavorites,
 }) => {
-  const { data, loader } = useFetch(
+  const { data, error, loader } = useFetch(
     `https://themealdb.com/api/json/v1/1/filter.php?c=${list}`
   );
 
@@ -80,9 +81,9 @@ const FoodListContainer = ({
             Sweets
           </li>
         </ul>
-        <div className="foodListScrollBar min-h-[30rem] px-4 overflow-x-scroll flex gap-x-10">
-          {loader ? (
-            data.map(
+        {loader ? (
+          <div className="foodListScrollBar min-h-[30rem] px-4 overflow-x-scroll flex gap-x-10">
+            {data.map(
               ({
                 idMeal: mealId,
                 strMeal: mealName,
@@ -104,11 +105,16 @@ const FoodListContainer = ({
                   />
                 );
               }
-            )
-          ) : (
-            <Loader />
-          )}
-        </div>
+            )}
+          </div>
+        ) : error ? (
+          <EmptyData
+            title="Servers are down"
+            subtext="Please wait patiently, we're working on it."
+          />
+        ) : (
+          <Loader />
+        )}
       </div>
     </>
   );
