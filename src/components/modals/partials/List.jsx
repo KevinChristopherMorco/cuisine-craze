@@ -42,7 +42,7 @@ const List = ({ clearActive }) => {
                   }
                 </p>
               </div>
-              <ul className="h-[25rem] flex flex-col gap-y-2 overflow-y-scroll text-base md:text-lg lg:h-[35rem] lg:gap-y-4 lg:text-xl xl:h-[20rem]">
+              <ul className="h-[25rem] flex flex-col gap-y-2 overflow-y-scroll text-base cursor-pointer md:text-lg lg:h-[35rem] lg:gap-y-4 lg:text-xl xl:h-[20rem]">
                 {mealIngredients
                   .filter(({ ingredient }) => Boolean(ingredient))
                   .map(({ ingredient, complete }, index) => (
