@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 import useChecklist from "../../../hooks/user-actions/useChecklist";
 import Loader from "../../loaders/Loader";
+import ServerDown from "../../response/500/ServerDown";
 import {
   IconHeartFilled,
   IconHeartBroken,
@@ -21,18 +22,27 @@ const RecipeInformation = ({
   setActive,
 }) => {
   const { recipe } = useParams();
-  const { data, loader } = useFetch(
+  const { data, error, loader } = useFetch(
     `https://themealdb.com/api/json/v1/1/search.php?s=${recipe}`
   );
 
   const { checklist, addChecklist } = useChecklist();
   const { mealName: checkMealName } = checklist;
 
-  if (!loader) {
-    return <Loader />;
-  }
+  // if (error) {
+  //   return (
+  //     <ServerDown
+  //       title="Servers are down"
+  //       subtext="Please wait patiently, we're working on it."
+  //     />
+  //   );
+  // }
 
-  const [recipes] = data;
+  // if (!loader) {
+  //   return <Loader />;
+  // }
+
+  const [recipes] = data || [];
   const {
     idMeal: mealId,
     strMeal: mealName,
@@ -61,7 +71,7 @@ const RecipeInformation = ({
     strIngredient18,
     strIngredient19,
     strIngredient20,
-  } = recipes;
+  } = recipes || {};
 
   const ingredientsList = [
     { ingredient: strIngredient1, complete: false },
@@ -89,141 +99,160 @@ const RecipeInformation = ({
   const isFavorite = favorites.some((fav) => fav.mealId === mealId);
 
   return (
-    <div className="px-6 py-10 overflow-y-scroll flex flex-col gap-y-8 md:gap-y-12">
-      <div className="flex justify-between items-center cursor-pointer">
-        <Link to="/">
-          <IconChevronLeft className="md:w-8 md:h-8 lg:w-10 lg:h-10" />
-        </Link>
-        {isFavorite ? (
-          <button
-            className="p-2 flex items-center border-2 border-[var(--accent-color)] bg-[var(--secondary-color)] text-[--accent-color] rounded-xl md:p-3"
-            onClick={() => handleDeleteFavorites(mealId, mealName)}
-          >
-            <IconHeartBroken className="md:w-8 md:h-8" />
-          </button>
-        ) : (
-          <button
-            className="p-2 flex items-center bg-[var(--accent-color)] text-[#fff] rounded-xl md:p-3"
-            onClick={() => handleAddFavorites(mealId, mealName, mealImg)}
-          >
-            <IconHeartFilled className="md:w-8 md:h-8" />
-          </button>
-        )}
-      </div>
-      <div>
-        <img
-          src={mealImg}
-          alt=""
-          className="w-[90%] h-[90%] mx-auto rounded-xl md:w-[50%] md:h-[50%] xl:w-[40%] xl:h-[40%]"
-        />
-      </div>
-      <div className="flex flex-wrap items-center xl:justify-between">
-        <div className="basis-[40%] text-xl font-bold md:text-2xl lg:text-3xl xl:text-4xl">
-          <p>{mealName}</p>
-        </div>
-        <div className="w-full basis-[60%] flex justify-evenly items-center text-[0.8rem] text-[var(--inactive-color)] font-bold md:text-xl lg:text-2xl xl:basis-[20%] xl:justify-start xl:gap-x-8">
-          <div className="flex items-center gap-x-1">
-            <IconFlag3 className="w-5 h-5 md:w-8 md:h-8 lg:w-10 lg:h-10" />
-            <p>{mealArea}</p>
+    <>
+      {loader ? (
+        <div className="px-6 py-10 overflow-y-scroll flex flex-col gap-y-8 md:gap-y-12">
+          <div className="flex justify-between items-center cursor-pointer">
+            <Link to="/">
+              <IconChevronLeft className="md:w-8 md:h-8 lg:w-10 lg:h-10" />
+            </Link>
+            {isFavorite ? (
+              <button
+                className="p-2 flex items-center border-2 border-[var(--accent-color)] bg-[var(--secondary-color)] text-[--accent-color] rounded-xl md:p-3"
+                onClick={() => handleDeleteFavorites(mealId, mealName)}
+              >
+                <IconHeartBroken className="md:w-8 md:h-8" />
+              </button>
+            ) : (
+              <button
+                className="p-2 flex items-center bg-[var(--accent-color)] text-[#fff] rounded-xl md:p-3"
+                onClick={() => handleAddFavorites(mealId, mealName, mealImg)}
+              >
+                <IconHeartFilled className="md:w-8 md:h-8" />
+              </button>
+            )}
           </div>
-          <div className="flex items-center gap-x-1">
-            <IconChefHat className="w-5 h-5 md:w-8 md:h-8 lg:w-10 lg:h-10" />
-            <p>
-              {mealCategory === "Vegetarian"
-                ? "Vegan"
-                : mealCategory === "Miscellaneous"
-                ? "Others"
-                : mealCategory}
-            </p>
+          <div>
+            <img
+              src={mealImg}
+              alt=""
+              className="w-[90%] h-[90%] mx-auto rounded-xl md:w-[50%] md:h-[50%] xl:w-[40%] xl:h-[40%]"
+            />
           </div>
-        </div>
-      </div>
-      <div className="flex flex-col gap-y-8 md:gap-y-12">
-        <div className="flex justify-start items-start gap-x-4 text-base font-medium cursor-pointer md:text-lg lg:text-xl">
-          <div
-            className={
-              tab === "ingredients"
-                ? "font-bold underline underline-offset-[10px] decoration-2 decoration-[var(--accent-color)]"
-                : ""
-            }
-            onClick={() => setActive("tab", "ingredients")}
-          >
-            <p>Ingredients</p>
-          </div>
-          <div
-            className={
-              tab === "instructions"
-                ? "font-bold underline underline-offset-[10px] decoration-2 decoration-[var(--accent-color)]"
-                : ""
-            }
-            onClick={() => setActive("tab", "instructions")}
-          >
-            <p>Instructions</p>
-          </div>
-        </div>
-        <div className="pb-10">
-          {tab === "ingredients" && (
-            <div className="flex flex-col gap-y-4 animate-fadeIn">
-              <div className="flex items-center gap-x-6">
-                <p className="font-medium md:text-xl lg:text-2xl">
-                  Ingredients:
-                </p>
-                <div
-                  className="flex items-center gap-x-1 text-[0.80rem] text-[var(--accent-color)] font-bold cursor-pointer"
-                  onClick={() =>
-                    addChecklist(mealId, mealName, ingredientsList)
-                  }
-                >
-                  {checkMealName === mealName ? (
-                    <>
-                      <IconChecklist className="w-5 h-5 md:w-8 md:h-8 lg:w-10 lg:h-10" />
-                      <p>Added in your checklist</p>
-                    </>
-                  ) : (
-                    !Boolean(checkMealName) && (
-                      <>
-                        <IconSoup className="w-5 h-5 md:w-8 md:h-8 lg:w-10 lg:h-10" />
-                        <p>Cook this now!</p>
-                      </>
-                    )
-                  )}
-                </div>
-              </div>
-              <ol className="flex flex-wrap gap-x-2 text-sm font-medium list-decimal list-inside md:gap-x-4 md:text-lg lg:gap-x-6 lg:text-xl">
-                {ingredientsList
-                  .filter(({ ingredient }) => Boolean(ingredient))
-                  .map(({ ingredient }, index) => (
-                    <li key={index}>{ingredient}</li>
-                  ))}
-              </ol>
+          <div className="flex flex-wrap items-center xl:justify-between">
+            <div className="basis-[40%] text-xl font-bold md:text-2xl lg:text-3xl xl:text-4xl">
+              <p>{mealName}</p>
             </div>
-          )}
-
-          {tab === "instructions" && (
-            <>
-              <div className="h-[20rem] overflow-y-scroll flex flex-col gap-y-2 text-sm animate-fadeIn md:text-lg lg:text-xl">
-                <ol className="flex flex-col gap-y-2 list-decimal list-inside">
-                  {mealInstructions.split("\r\n").map((instruction, index) => (
-                    <li key={index}>{instruction}</li>
-                  ))}
-                </ol>
+            <div className="w-full basis-[60%] flex justify-evenly items-center text-[0.8rem] text-[var(--inactive-color)] font-bold md:text-xl lg:text-2xl xl:basis-[20%] xl:justify-start xl:gap-x-8">
+              <div className="flex items-center gap-x-1">
+                <IconFlag3 className="w-5 h-5 md:w-8 md:h-8 lg:w-10 lg:h-10" />
+                <p>{mealArea}</p>
+              </div>
+              <div className="flex items-center gap-x-1">
+                <IconChefHat className="w-5 h-5 md:w-8 md:h-8 lg:w-10 lg:h-10" />
                 <p>
-                  <span className="font-bold">Feeling lost? </span> Watch it
-                  step by step{" "}
-                  <a
-                    href={link}
-                    target="_blank"
-                    className="font-bold text-[var(--accent-color)]"
-                  >
-                    here!
-                  </a>
+                  {mealCategory === "Vegetarian"
+                    ? "Vegan"
+                    : mealCategory === "Miscellaneous"
+                    ? "Others"
+                    : mealCategory}
                 </p>
               </div>
-            </>
-          )}
+            </div>
+          </div>
+          <div className="flex flex-col gap-y-8 md:gap-y-12">
+            <div className="flex justify-start items-start gap-x-4 text-base font-medium cursor-pointer md:text-lg lg:text-xl">
+              <div
+                className={
+                  tab === "ingredients"
+                    ? "font-bold underline underline-offset-[10px] decoration-2 decoration-[var(--accent-color)]"
+                    : ""
+                }
+                onClick={() => setActive("tab", "ingredients")}
+              >
+                <p>Ingredients</p>
+              </div>
+              <div
+                className={
+                  tab === "instructions"
+                    ? "font-bold underline underline-offset-[10px] decoration-2 decoration-[var(--accent-color)]"
+                    : ""
+                }
+                onClick={() => setActive("tab", "instructions")}
+              >
+                <p>Instructions</p>
+              </div>
+            </div>
+            <div className="pb-10">
+              {tab === "ingredients" && (
+                <div className="flex flex-col gap-y-4 animate-fadeIn">
+                  <div className="flex items-center gap-x-6">
+                    <p className="font-medium md:text-xl lg:text-2xl">
+                      Ingredients:
+                    </p>
+                    <div
+                      className="flex items-center gap-x-1 text-[0.80rem] text-[var(--accent-color)] font-bold cursor-pointer"
+                      onClick={() =>
+                        addChecklist(mealId, mealName, ingredientsList)
+                      }
+                    >
+                      {checkMealName === mealName ? (
+                        <>
+                          <IconChecklist className="w-5 h-5 md:w-8 md:h-8 lg:w-10 lg:h-10" />
+                          <p>Added in your checklist</p>
+                        </>
+                      ) : (
+                        !Boolean(checkMealName) && (
+                          <>
+                            <IconSoup className="w-5 h-5 md:w-8 md:h-8 lg:w-10 lg:h-10" />
+                            <p>Cook this now!</p>
+                          </>
+                        )
+                      )}
+                    </div>
+                  </div>
+                  <ol className="flex flex-wrap gap-x-2 text-sm font-medium list-decimal list-inside md:gap-x-4 md:text-lg lg:gap-x-6 lg:text-xl">
+                    {ingredientsList
+                      .filter(({ ingredient }) => Boolean(ingredient))
+                      .map(({ ingredient }, index) => (
+                        <li key={index}>{ingredient}</li>
+                      ))}
+                  </ol>
+                </div>
+              )}
+
+              {tab === "instructions" && (
+                <>
+                  <div className="h-[20rem] overflow-y-scroll flex flex-col gap-y-2 text-sm animate-fadeIn md:text-lg lg:text-xl">
+                    <ol className="flex flex-col gap-y-2 list-decimal list-inside">
+                      {mealInstructions
+                        .split("\r\n")
+                        .map((instruction, index) => (
+                          <li key={index}>{instruction}</li>
+                        ))}
+                    </ol>
+                    <p>
+                      <span className="font-bold">Feeling lost? </span> Watch it
+                      step by step{" "}
+                      <a
+                        href={link}
+                        target="_blank"
+                        className="font-bold text-[var(--accent-color)]"
+                      >
+                        here!
+                      </a>
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      ) : error ? (
+        <>
+          {" "}
+          <Link to="/">
+            <IconChevronLeft className="md:w-8 md:h-8 lg:w-10 lg:h-10" />
+          </Link>
+          <ServerDown
+            title="Servers are down"
+            subtext="Please wait patiently, we're working on it."
+          />
+        </>
+      ) : (
+        <Loader />
+      )}
+    </>
   );
 };
 

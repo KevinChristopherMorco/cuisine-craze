@@ -1,6 +1,6 @@
 import React from "react";
 import FavoriteCard from "../../dynamic/FavoriteCard";
-import EmptyData from "../../empty/EmptyData";
+import ServerDown from "../../response/500/ServerDown";
 import eatingPenguin from "../../../images/gif/eating-penguin.gif";
 import { IconSquareRoundedX } from "@tabler/icons-react";
 

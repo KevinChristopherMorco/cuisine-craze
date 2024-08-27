@@ -15,7 +15,7 @@
     /* #fdead0 */
 
     --primary-color: #faf9fc;
-    --secondary-color: #f8eee1;
+    --secondary-color: #ffefcb;
     --accent-color: #ff7f3e;
     --text-color: #000;
     --shadow-color: #a5a2a2;
@@ -56,6 +56,18 @@
   @font-face {
     font-family: "Lexend";
     src: local("Lexend"), url(./fonts/Lexend-Regular.ttf) format("ttf");
+  }
+
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--secondary-color);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
   }
 
   /* Hide scrollbar for Chrome, Safari and Opera */

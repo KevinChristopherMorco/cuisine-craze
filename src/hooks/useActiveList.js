@@ -22,11 +22,15 @@ const useActiveList = () => {
   );
 
   useEffect(() => {
+    console.log(nav);
     if (!nav) {
       document.body.classList.remove("overflow-hidden");
       return;
     }
-    document.body.classList.add("overflow-hidden");
+
+    if (nav !== "home") {
+      document.body.classList.add("overflow-hidden");
+    }
   }, [nav]);
 
   return { active, setActive, clearActive };

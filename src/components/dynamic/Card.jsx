@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-
-import useRandomColors from "../../hooks/useRandomColors";
 import {
   IconHeartBroken,
   IconHeartFilled,
@@ -16,7 +14,6 @@ const Card = ({
   handleAddFavorites,
   handleDeleteFavorites,
 }) => {
-  const { hexCode } = useRandomColors();
   const style = {
     backgroundImage: `url(${mealImg})`,
     backgroundSize: "cover",
@@ -27,7 +24,7 @@ const Card = ({
   return (
     <>
       <div
-        className={`h-[20rem] shrink-0 basis-[60%] h-fit flex flex-col justify-around gap-y-10 bg-[#CEEDFF] shadow-md shadow-[var(--shadow-color)] rounded-xl dark:border dark:border-[var(--secondary-color)] dark:bg-[var(--primary-color)] dark:shadow dark:shadow-[var(--accent-color)] hover:scale-110 transition md:basis-[35%] lg:basis-[28%] 2xl:basis-[20%]`}
+        className={`h-[20rem] shrink-0 basis-[60%] h-fit flex flex-col justify-around gap-y-10 bg-[#BDF9BD] shadow-md shadow-[var(--shadow-color)] rounded-xl dark:border dark:border-[var(--secondary-color)] dark:bg-[var(--primary-color)] dark:shadow dark:shadow-[var(--accent-color)] hover:scale-105 transition md:basis-[35%] lg:basis-[25%]`}
       >
         <div
           className="w-[10rem] h-[10rem] m-3 flex justify-end shadow shadow-[var(--accent-color)] rounded-full self-end lg:w-[12rem] lg:h-[12rem]"
@@ -42,11 +39,11 @@ const Card = ({
           <div className="py-2 flex items-center gap-x-6 md:gap-x-0 md:justify-between">
             {isFavorite ? (
               <div
-                className="flex items-center gap-x-1"
+                className="flex items-center gap-x-1 cursor-pointer"
                 onClick={() => handleDeleteFavorites(mealId, mealName)}
               >
                 <div className="p-1 flex items-center border border-[var(--accent-color)] bg-[var(--secondary-color)] text-[--accent-color] rounded-full">
-                  <IconHeartBroken className="h-4 w-4 md:h-6 md:w-6 lg:h-8 lg:w-8" />
+                  <IconHeartBroken className="h-4 w-4 md:h-6 md:w-6" />
                 </div>
                 <p className="text-[0.80rem] text-[var(--active-color)] font-bold md:text-base lg:text-lg">
                   Dislike
@@ -54,11 +51,11 @@ const Card = ({
               </div>
             ) : (
               <div
-                className="flex items-center gap-x-1"
+                className="flex items-center gap-x-1 cursor-pointer"
                 onClick={() => handleAddFavorites(mealId, mealName, mealImg)}
               >
                 <div className="p-1 flex items-center bg-[var(--accent-color)] text-[#fff] rounded-full">
-                  <IconHeartFilled className="h-4 w-4 md:h-6 md:w-6 lg:h-8 lg:w-8" />
+                  <IconHeartFilled className="h-4 w-4 md:h-6 md:w-6" />
                 </div>
                 <p className="text-[0.80rem] text-[var(--active-color)] font-bold md:text-base lg:text-lg">
                   Favorite

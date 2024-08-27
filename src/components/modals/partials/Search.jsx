@@ -1,10 +1,9 @@
 import React from "react";
-import SearchCard from "../../dynamic/SearchCard";
 import useSearch from "../../../hooks/user-actions/useSearch";
-import searchingPenguin from "../../../images/gif/searching-penguin.gif";
-import sadPenguin from "../../../images/gif/sad-penguin.gif";
-
+import SearchCard from "../../dynamic/SearchCard";
+import NotFound from "../../response/400/NotFound";
 import { IconSquareRoundedX } from "@tabler/icons-react";
+import SearchResponse from "../../response/SearchResponse";
 
 const Search = ({ clearActive }) => {
   const { data, loader, handleInput, empty } = useSearch();
@@ -48,21 +47,11 @@ const Search = ({ clearActive }) => {
                 )
               )
             ) : (
-              <div className="h-[10rem] flex flex-col justify-evenly items-center">
-                <img src={sadPenguin} alt="" className="w-[5rem] h-[5rem]" />
-                <p className="text-xl text-center font-bold">
-                  No luck, but keep searching!
-                </p>
-              </div>
+              <NotFound title="No luck, but keep searching!" />
             )}
           </div>
         ) : (
-          <div className="h-[10rem] flex flex-col justify-evenly items-center">
-            <img src={searchingPenguin} alt="" className="w-[5rem] h-[5rem]" />
-            <p className="text-xl text-center font-bold">
-              Let’s get cooking! Search now..
-            </p>
-          </div>
+          <SearchResponse title="Let’s get cooking! Search now.." />
         )}
       </div>
     </div>

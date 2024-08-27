@@ -10,7 +10,7 @@ const FavoriteCard = ({
   handleDeleteFavorites,
 }) => {
   return (
-    <div className="flex justify-between shadow-md shadow-[var(--shadow-color)] rounded-xl dark:border dark:border-[var(--secondary-color)] dark:bg-[var(--primary-color)] dark:shadow dark:shadow-[var(--accent-color)] hover:scale-110 transition xl:hover:scale-105">
+    <div className="flex justify-between shadow-md shadow-[var(--shadow-color)] rounded-xl dark:border dark:border-[var(--secondary-color)] dark:bg-[var(--primary-color)] dark:shadow dark:shadow-[var(--accent-color)] transition">
       <div className="basis-[35%] md:basis-[30%] xl:basis-[25%]">
         <img src={mealImg} alt={mealName} className="rounded-xl" />
       </div>

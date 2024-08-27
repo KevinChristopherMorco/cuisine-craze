@@ -2,6 +2,8 @@ import React from "react";
 import Hero from "../sections/Hero";
 import FoodListContainer from "../FoodListContainer";
 
+import useTime from "../../../hooks/useTime";
+
 const Home = ({
   list,
   setActive,
@@ -9,6 +11,8 @@ const Home = ({
   handleAddFavorites,
   handleDeleteFavorites,
 }) => {
+  const { time } = useTime();
+
   return (
     <>
       <Hero />
