@@ -42,7 +42,7 @@ const List = ({ clearActive }) => {
                   }
                 </p>
               </div>
-              <ul className="h-[25rem] flex flex-col gap-y-2 overflow-y-scroll text-base cursor-pointer md:text-lg lg:h-[35rem] lg:gap-y-4 lg:text-xl xl:h-[20rem]">
+              <ul className="h-[25rem] flex flex-col gap-y-2 overflow-y-scroll text-base md:text-lg lg:h-[35rem] lg:gap-y-4 lg:text-xl xl:h-[20rem]">
                 {mealIngredients
                   .filter(({ ingredient }) => Boolean(ingredient))
                   .map(({ ingredient, complete }, index) => (
@@ -50,8 +50,8 @@ const List = ({ clearActive }) => {
                       key={index}
                       className={`${
                         complete
-                          ? "flex items-center gap-x-2 line-through text-green-400 before:content-['✔']"
-                          : "flex items-center gap-x-2 before:content-['◦']"
+                          ? "flex items-center gap-x-2 line-through text-green-400 cursor-pointer before:content-['✔']"
+                          : "flex items-center gap-x-2 cursor-pointer before:content-['◦']"
                       }`}
                       onClick={
                         complete
