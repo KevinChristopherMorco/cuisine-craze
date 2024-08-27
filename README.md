@@ -2,6 +2,12 @@
 # Cuisine Craze
 
 Have you ever found yourself in need of a new recipe but weren't sure where to start? Look no further! Our app is designed to make finding and discovering new recipes a breeze. Whether you’re searching for a quick weeknight dinner, a special holiday treat, or something new to spice up your meal routine, Cuisine Craze has you covered.
+
+## Screenshots
+
+![FHD](src/screenshots/fhd.png)
+![Mobile View](src/screenshots/mobile.png)
+
 ## Features
 
 - Light/dark mode toggle
@@ -13,7 +19,6 @@ Have you ever found yourself in need of a new recipe but weren't sure where to s
 ## Tech Stack
 
 **Client:** HTML, CSS, JavaScript, React, TailwindCSS, Web Storage API
-
 
 
 # Lessons Learned
