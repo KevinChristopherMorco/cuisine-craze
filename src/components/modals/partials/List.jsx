@@ -21,7 +21,7 @@ const List = ({ clearActive }) => {
           {Boolean(mealName) && (
             <div className="flex justify-between items-center text-lg font-bold md:text-2xl">
               <p>{mealName}</p>
-              <div className="flex items-center gap-x-1 text-sm text-red-700 md:text-base">
+              <div className="flex items-center gap-x-1 text-sm text-red-700 cursor-pointer md:text-base">
                 <IconTrash
                   className="w-5 h-5 md:w-7 md:h-7 lg:w-8 lg:h-8"
                   onClick={clearChecklist}
