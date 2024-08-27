@@ -22,7 +22,6 @@ const useActiveList = () => {
   );
 
   useEffect(() => {
-    console.log(nav);
     if (!nav) {
       document.body.classList.remove("overflow-hidden");
       return;

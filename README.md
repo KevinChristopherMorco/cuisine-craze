@@ -1,70 +1,51 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Cuisine Craze
 
-## Available Scripts
+Have you ever found yourself in need of a new recipe but weren't sure where to start? Look no further! Our app is designed to make finding and discovering new recipes a breeze. Whether you’re searching for a quick weeknight dinner, a special holiday treat, or something new to spice up your meal routine, Cuisine Craze has you covered.
+## Features
 
-In the project directory, you can run:
+- Light/dark mode toggle
+- Search by food name
+- Browse by Category
+- Detailed Recipe Information
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Client:** HTML, CSS, JavaScript, React, TailwindCSS, Web Storage API
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+# Lessons Learned
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Throughout the development of this app, I’ve gained some valuable insights into managing states (useState and useEffect) and using LocalStorage to enhance user experience.  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# The Challenges
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+One of the key challenges I encountered was organizing and managing the **file hierarchy and structure** in my project. As the project grew, keeping track of files and ensuring a logical structure became increasingly complex. It was sometimes tricky to determine the best way to organize components, utilities, and assets to maintain clarity and avoid confusion.
 
-### `npm run eject`
+**Error handling** presented another significant challenge. Implementing error handling was crucial for ensuring that the app could handle a smooth experience even when errors where thrown without breaking the app. I faced difficulties in anticipating and catching various types of errors, especially on api responses.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Keys for Improvement
+For the file structure and hierarchy:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Adopt a Consistent Structure**: Establish a clear and consistent file structure from the beginning. Anticipating early on what functions are necessary and assets are organized by feature or functionality. This makes it easier to navigate and maintain the project as it grows.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+For the file error handling:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Using **try-catch blocks**, error handling mechanisms to catch and manage errors effectively also by returning a fallback like for example an array function would be used in the viewing of certain items, it's best to put a fallback if an api returns falsy values so that it would prevent breaking the app.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Acknowledgements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+These lists of documentation are what I'm currently using:
 
-### Analyzing the Bundle Size
+- [React](https://react.dev/)
+- [MDN Web Docs](https://developer.mozilla.org/)
+- [W3Schools](https://www.w3schools.com/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+For video tutorials:
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [@WebDevSimplified](https://www.youtube.com/c/webdevsimplified)
